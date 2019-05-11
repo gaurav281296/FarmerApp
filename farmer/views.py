@@ -9,39 +9,29 @@ from rest_framework.response import Response
 from rest_framework import status
 from . models import farmer as farmermodel
 from . serializers import farmerSerializer
+from django.http import Http404
+from rest_framework import mixins
+from rest_framework import generics
+
+class farmerList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = farmermodel.objects.all()
+    serializer_class = farmerSerializer
+    def get(self, request, *args, **kwargs):
+        return self.list(request)
+    
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
 
-@api_view(['GET', 'POST'])
-def farmer_list(request, format=None):
-    if request.method == 'GET':
-        farmers = farmermodel.objects.all()
-        serializedFarmers = farmerSerializer(farmers, many=True)
-        return Response(serializedFarmers.data)
-    elif request.method == 'POST':
-        farmer = request.data.get('farmer')
-        serializedFarmers = farmerSerializer(data = farmer)
-        if serializedFarmers.is_valid(raise_exception = True):
-            farmer_saved = serializedFarmers.save()
-        return Response({"success": "Farmer '{}' added successfully".format(farmer_saved)})
+class farmerDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    queryset = farmermodel.objects.all() #objects.get(pk=id)
+    serializer_class = farmerSerializer
 
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
-@api_view(['GET','PUT','DELETE'])
-def farmer_detail(request, id, format=None):
-        try:
-            farmer = farmermodel.objects.get(pk=id)
-        except farmer.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
-        if request.method == 'GET':
-            serializedFarmers = farmerSerializer(farmer)
-            return Response(serializedFarmers.data)
-
-        elif request.method == 'PUT':
-            serializedFarmers = farmerSerializer(farmer, data = request.data)
-            if serializedFarmers.is_valid(raise_exception = True):
-                farmer_saved = serializedFarmers.save()
-            return Response({"success": "Farmer '{}' modified successfully".format(farmer_saved)})
-
-        elif request.method == 'DELETE':
-            farmer.delete()
-            return Response({"message": "Farmer with id `{}` has been deleted.".format(id)},status=204)
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)

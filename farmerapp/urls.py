@@ -20,6 +20,6 @@ from farmer import views
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
-    path('farmer/',views.farmer_list),
-    path('farmer/<int:id>', views.farmer_detail),
+    path('farmer/',views.farmerList.as_view()),
+    path('farmer/<int:pk>', views.farmerDetail.as_view()),
 ]
