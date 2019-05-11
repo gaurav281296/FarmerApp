@@ -18,6 +18,7 @@ from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 from farmer import views as farmerviews
 from farm import views as farmviews
+from fertilizer import views as fertilizerviews
 from rest_framework_swagger.views import get_swagger_view
 
 schema_view = get_swagger_view(title='Farmerapp API')
@@ -28,5 +29,7 @@ urlpatterns = [
     path('farmer/',farmerviews.farmerList.as_view()),
     path('farmer/<int:pk>', farmerviews.farmerDetail.as_view()),
     path('farm/',farmviews.farmList.as_view()),
-    path('farm/<int:pk>', farmviews.farmDetail.as_view())
+    path('farm/<int:pk>', farmviews.farmDetail.as_view()),
+    path('fertilizer/',fertilizerviews.fertilizerList.as_view()),
+    path('fertilizer/<int:pk>',fertilizerviews.fertilizerDetail.as_view()),
 ]

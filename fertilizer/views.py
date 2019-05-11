@@ -1,24 +1,23 @@
 from django.shortcuts import render
-
 # Create your views here.
-from . models import farmer as farmermodel
-from . serializers import farmerSerializer
+from . models import fertilizer as fertilizermodel
+from . serializers import fertilizerSerializer
 from rest_framework import mixins
 from rest_framework import generics
 
-class farmerList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
-    queryset = farmermodel.objects.all()
-    serializer_class = farmerSerializer
+class fertilizerList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = fertilizermodel.objects.all()
+    serializer_class = fertilizerSerializer
+
     def get(self, request, *args, **kwargs):
         return self.list(request)
     
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
-
-class farmerDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
-    queryset = farmermodel.objects.all() #objects.get(pk=id)
-    serializer_class = farmerSerializer
+class fertilizerDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    queryset = fertilizermodel.objects.all() #objects.get(pk=id)
+    serializer_class = fertilizerSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
