@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.urlpatterns import format_suffix_patterns
 from farmer import views
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
-    path(r'farmers/', views.farmerList.as_view()),
+    path('farmer/',views.farmer_list),
+    path('farmer/<int:id>', views.farmer_detail),
 ]

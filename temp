@@ -1,0 +1,34 @@
+
+
+
+class farmerView(APIView):
+
+    def get(self, request):
+        farmers = farmer.objects.all()
+        serializedFarmers = farmerSerializer(farmers, many=True)
+        return Response(serializedFarmers.data)
+    
+    #def get(self,request,pk):
+    #    farmer = get_object_or_404(farmer.objects.all(), pk=pk)
+    #    serializedFarmers = farmerSerializer(farmer)
+    #    return Response(serializedFarmers.data)
+
+    def post(self, request):
+        farmer = request.data.get('farmer')
+        serializedFarmers = farmerSerializer(data = farmer)
+        if serializedFarmers.is_valid(raise_exception = True):
+            farmer_saved = serializedFarmers.save()
+        return Response({"success": "Farmer '{}' added successfully".format(farmer_saved)})
+
+    def put(self, request, pk):
+        currentFarmer = get_object_or_404(farmer.objects.all(), pk=pk)
+        data = request.data.get('farmer')
+        serializedFarmer = farmerSerializer(instance=currentFarmer, data=data, partial=True)
+        if serializedFarmer.is_valid(raise_exception=True):
+            updatedFarmer = serializedFarmer.save()
+        return Response({"success": "Farmer '{}' updated successfully".format(updatedFarmer)})
+    
+    def delete(self,request,pk):
+        farmer = get_object_or_404(farmer.objects.all(), pk=pk)
+        farmer.delete()
+        return Response({"message": "Farmer with id `{}` has been deleted.".format(pk)},status=204)

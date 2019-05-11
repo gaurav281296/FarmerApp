@@ -8,4 +8,3 @@ class farmer(models.Model):
 
     def __str__(self):
         return self.Name
-        
