@@ -16,10 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from farmer import views
+from farmer import views as farmerviews
+from farm import views as farmviews
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Farmerapp API')
 
 urlpatterns = [
+    path('',schema_view),
     path(r'admin/', admin.site.urls),
-    path('farmer/',views.farmerList.as_view()),
-    path('farmer/<int:pk>', views.farmerDetail.as_view()),
+    path('farmer/',farmerviews.farmerList.as_view()),
+    path('farmer/<int:pk>', farmerviews.farmerDetail.as_view()),
+    path('farm/',farmviews.farmList.as_view()),
+    path('farm/<int:pk>', farmviews.farmDetail.as_view())
 ]

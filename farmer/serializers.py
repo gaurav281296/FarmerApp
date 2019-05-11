@@ -13,5 +13,6 @@ class farmerSerializer(serializers.ModelSerializer):
         instance.Name = validated_data.get('Name', instance.Name)
         instance.PhoneNumber = validated_data.get('PhoneNumber', instance.PhoneNumber)
         instance.Language = validated_data.get('Language', instance.Language)
+        instance.Farm = validated_data.get('Farm', instance.Farm)
         instance.save()
         return instance
