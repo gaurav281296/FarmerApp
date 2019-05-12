@@ -19,6 +19,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from farmer import views as farmerviews
 from farm import views as farmviews
 from fertilizer import views as fertilizerviews
+from schedule import views as scheduleviews
 from rest_framework_swagger.views import get_swagger_view
 
 schema_view = get_swagger_view(title='Farmerapp API')
@@ -32,4 +33,6 @@ urlpatterns = [
     path('farm/<int:pk>', farmviews.farmDetail.as_view()),
     path('fertilizer/',fertilizerviews.fertilizerList.as_view()),
     path('fertilizer/<int:pk>',fertilizerviews.fertilizerDetail.as_view()),
+    path('schedule/',scheduleviews.scheduleList.as_view()),
+    path('schedule/<int:pk>',scheduleviews.scheduleDetail.as_view()),
 ]

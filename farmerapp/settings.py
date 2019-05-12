@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'farmer',
     'farm',
     'fertilizer',
+    'schedule',
 ]
 
 MIDDLEWARE = [
