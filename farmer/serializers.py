@@ -1,8 +1,7 @@
 from rest_framework import serializers
 from . models import farmer as farmermodel
 
-class farmerSerializer(serializers.ModelSerializer):
-    Farms = serializers.StringRelatedField(many=True)
+class farmerWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = farmermodel
         fields = '__all__'
@@ -16,3 +15,9 @@ class farmerSerializer(serializers.ModelSerializer):
         instance.Language = validated_data.get('Language', instance.Language)
         instance.save()
         return instance
+
+class farmerReadSerializer(serializers.ModelSerializer):
+    Farms = serializers.StringRelatedField(many=True)
+    class Meta:
+        model = farmermodel
+        fields = '__all__'

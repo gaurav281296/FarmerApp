@@ -2,13 +2,13 @@ from django.shortcuts import render
 
 # Create your views here.
 from . models import farmer as farmermodel
-from . serializers import farmerSerializer
+from . serializers import farmerReadSerializer, farmerWriteSerializer
 from rest_framework import mixins
 from rest_framework import generics
 
 class farmerList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = farmermodel.objects.all()
-    serializer_class = farmerSerializer
+    serializer_class = farmerReadSerializer
     def get(self, request, *args, **kwargs):
         return self.list(request)
     
@@ -18,7 +18,7 @@ class farmerList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generi
 
 class farmerDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = farmermodel.objects.all() #objects.get(pk=id)
-    serializer_class = farmerSerializer
+    serializer_class = farmerWriteSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
