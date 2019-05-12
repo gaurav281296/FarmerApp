@@ -23,3 +23,8 @@ class farmReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = farmmodel
         fields = '__all__'
+
+class farmQuerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = farmmodel
+        fields = [('Owner')]

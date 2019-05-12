@@ -4,6 +4,8 @@ from . models import farm as farmmodel
 from . serializers import farmWriteSerializer, farmReadSerializer
 from rest_framework import mixins
 from rest_framework import generics
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 class farmList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = farmmodel.objects.all()
@@ -27,3 +29,4 @@ class farmDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.Dest
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+

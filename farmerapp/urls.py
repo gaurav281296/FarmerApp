@@ -29,6 +29,7 @@ urlpatterns = [
     path(r'admin/', admin.site.urls),
     path('farmer/',farmerviews.farmerList.as_view()),
     path('farmer/<int:pk>', farmerviews.farmerDetail.as_view()),
+    path('farmer/<slug:CropGrown>',farmerviews.farmQuery),
     path('farm/',farmviews.farmList.as_view()),
     path('farm/<int:pk>', farmviews.farmDetail.as_view()),
     path('fertilizer/',fertilizerviews.fertilizerList.as_view()),

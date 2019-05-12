@@ -7,3 +7,6 @@ class farm(models.Model):
     CropGrown = models.CharField(max_length=20)
     SowingDate = models.DateField()
     Owner = models.ForeignKey(farmer,related_name='Farms',default=0,on_delete=models.SET_DEFAULT)
+
+    def __str__(self):
+        return '{0}'.format(self.id)
