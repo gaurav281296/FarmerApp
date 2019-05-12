@@ -23,7 +23,7 @@ class scheduleDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.
     queryset = schedulemodel.objects.all() #objects.get(pk=id)
     serializer_class = scheduleSerializer
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs): 
         return self.retrieve(request, *args, **kwargs)
 
     def put(self, request, *args, **kwargs):

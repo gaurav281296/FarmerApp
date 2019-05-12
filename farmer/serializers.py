@@ -2,6 +2,7 @@ from rest_framework import serializers
 from . models import farmer as farmermodel
 
 class farmerSerializer(serializers.ModelSerializer):
+    Farms = serializers.StringRelatedField(many=True)
     class Meta:
         model = farmermodel
         fields = '__all__'
@@ -13,6 +14,5 @@ class farmerSerializer(serializers.ModelSerializer):
         instance.Name = validated_data.get('Name', instance.Name)
         instance.PhoneNumber = validated_data.get('PhoneNumber', instance.PhoneNumber)
         instance.Language = validated_data.get('Language', instance.Language)
-        instance.Farm = validated_data.get('Farm', instance.Farm)
         instance.save()
         return instance

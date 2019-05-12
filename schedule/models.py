@@ -9,4 +9,7 @@ class schedule(models.Model):
     Fertilizer = models.ForeignKey(fertilizer,default=0,on_delete=models.SET_DEFAULT)
     Quantity = models.DecimalField(max_digits=6,decimal_places=2)
     Unit = models.CharField(max_length=3)
-    Farm = models.ForeignKey(farm,default=0,on_delete=models.SET_DEFAULT)
+    Farm = models.ForeignKey(farm,related_name='Schedules',default=0,on_delete=models.SET_DEFAULT)
+
+    def __str__(self):
+        return '{0}'.format(self.id)

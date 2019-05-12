@@ -32,3 +32,13 @@ class farmerView(APIView):
         farmer = get_object_or_404(farmer.objects.all(), pk=pk)
         farmer.delete()
         return Response({"message": "Farmer with id `{}` has been deleted.".format(pk)},status=204)
+
+
+
+
+
+        print(request.method) #request.data
+        for arg in (args):
+            print(arg)
+        for key, value in kwargs.items(): 
+            print ("%s == %s" %(key, value))
