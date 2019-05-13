@@ -18,13 +18,7 @@ class farmWriteSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-class farmReadSerializer(serializers.ModelSerializer):
-    Schedules = serializers.StringRelatedField(many=True)
-    class Meta:
-        model = farmmodel
-        fields = '__all__'
-
-class farmQuerySerializer(serializers.ModelSerializer):
+class farmFarmerSerializer(serializers.ModelSerializer):
     class Meta:
         model = farmmodel
         fields = [('Owner')]

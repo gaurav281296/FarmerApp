@@ -4,7 +4,7 @@ from django.shortcuts import render
 from . models import farmer as farmermodel
 from farm.models import farm as farmmodel
 from . serializers import farmerReadSerializer, farmerWriteSerializer
-from farm.serializers import farmQuerySerializer
+from farm.serializers import farmFarmerSerializer
 from rest_framework import mixins
 from rest_framework import generics
 from rest_framework.decorators import api_view
@@ -12,7 +12,7 @@ from rest_framework.response import Response
 
 class farmerList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = farmermodel.objects.all()
-    serializer_class = farmerReadSerializer
+    serializer_class = farmerWriteSerializer
     def get(self, request, *args, **kwargs):
         return self.list(request)
     
@@ -36,7 +36,7 @@ class farmerDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.De
 @api_view(['GET'])
 def farmQuery(request, CropGrown, format=None):
     farms_got = farmmodel.objects.filter(CropGrown=CropGrown).distinct()
-    owners_dict = farmQuerySerializer(farms_got, many=True).data
+    owners_dict = farmFarmerSerializer(farms_got, many=True).data
     owners = []
     for owner in owners_dict:
         owners.append(int(owner['Owner']))

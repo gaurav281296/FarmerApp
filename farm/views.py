@@ -1,7 +1,7 @@
 from django.shortcuts import render
 # Create your views here.
 from . models import farm as farmmodel
-from . serializers import farmWriteSerializer, farmReadSerializer
+from . serializers import farmWriteSerializer
 from rest_framework import mixins
 from rest_framework import generics
 from rest_framework.decorators import api_view
@@ -9,7 +9,7 @@ from rest_framework.response import Response
 
 class farmList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = farmmodel.objects.all()
-    serializer_class = farmReadSerializer
+    serializer_class = farmWriteSerializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request)
