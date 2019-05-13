@@ -36,4 +36,5 @@ urlpatterns = [
     path('fertilizer/<int:pk>',fertilizerviews.fertilizerDetail.as_view()),
     path('schedule/',scheduleviews.scheduleList.as_view()),
     path('schedule/<int:pk>',scheduleviews.scheduleDetail.as_view()),
+    path('schedule/due',scheduleviews.scheduleQuery),
 ]

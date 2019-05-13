@@ -17,3 +17,8 @@ class scheduleSerializer(serializers.ModelSerializer):
         instance.Farm = validated_data.get('Farm', instance.Farm)
         instance.save()
         return instance
+
+class scheduleQuerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = schedulemodel
+        fields = [('DaysAfterSowing')]

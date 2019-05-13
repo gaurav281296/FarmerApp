@@ -28,3 +28,9 @@ class farmQuerySerializer(serializers.ModelSerializer):
     class Meta:
         model = farmmodel
         fields = [('Owner')]
+
+class farmScheduleSerializer(serializers.ModelSerializer):
+    Schedules = serializers.StringRelatedField(many=True)
+    class Meta:
+        model = farmmodel
+        fields = ('Schedules','SowingDate')
