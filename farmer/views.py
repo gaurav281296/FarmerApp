@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from . models import farmer as farmermodel
 from farm.models import farm as farmmodel
-from . serializers import farmerReadSerializer, farmerWriteSerializer
+from . serializers import farmerWriteSerializer
 from farm.serializers import farmFarmerSerializer
 from rest_framework import mixins
 from rest_framework import generics
