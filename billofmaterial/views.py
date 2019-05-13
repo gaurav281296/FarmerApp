@@ -30,7 +30,7 @@ class billofmaterial():
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True)
         
 
-
+#enter validation checks and 404 errors
 @api_view(['GET'])
 def bom(request, farmerId, format=None):
     total_cost = 0.0

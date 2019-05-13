@@ -53,3 +53,9 @@ def scheduleQuery(request, format=None):
     schedules = schedulemodel.objects.filter(id__in=schedules_due)
     schedules_dict = scheduleSerializer(schedules, many=True).data
     return Response(schedules_dict)
+
+@api_view(['GET'])
+def scheduleByFarm(request, farmId, format=None):
+    schedules = schedulemodel.objects.filter(Farm = farmId)
+    schedules = scheduleSerializer(schedules,many=True).data
+    return Response(schedules)

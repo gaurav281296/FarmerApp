@@ -34,7 +34,7 @@ class farmerDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.De
         return self.destroy(request, *args, **kwargs)
 
 @api_view(['GET'])
-def farmQuery(request, cropGrown, format=None):
+def farmerQuery(request, cropGrown, format=None):
     farms_got = farmmodel.objects.filter(CropGrown=cropGrown).distinct()
     owners_dict = farmFarmerSerializer(farms_got, many=True).data
     owners = []

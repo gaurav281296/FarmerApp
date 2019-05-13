@@ -30,3 +30,8 @@ class farmDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.Dest
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
+@api_view(['GET'])
+def farmQuery(request, farmerId, format=None):
+    farms = farmmodel.objects.filter(Owner=farmerId)
+    farms = farmWriteSerializer(farms, many=True).data
+    return Response(farms)
