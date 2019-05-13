@@ -20,6 +20,7 @@ from farmer import views as farmerviews
 from farm import views as farmviews
 from fertilizer import views as fertilizerviews
 from schedule import views as scheduleviews
+from billofmaterial import views as billofmaterialviews
 from rest_framework_swagger.views import get_swagger_view
 
 schema_view = get_swagger_view(title='Farmerapp API')
@@ -29,7 +30,7 @@ urlpatterns = [
     path(r'admin/', admin.site.urls),
     path('farmer/',farmerviews.farmerList.as_view()),
     path('farmer/<int:pk>', farmerviews.farmerDetail.as_view()),
-    path('farmer/<slug:CropGrown>',farmerviews.farmQuery),
+    path('farmer/<slug:cropGrown>',farmerviews.farmQuery),
     path('farm/',farmviews.farmList.as_view()),
     path('farm/<int:pk>', farmviews.farmDetail.as_view()),
     path('fertilizer/',fertilizerviews.fertilizerList.as_view()),
@@ -37,4 +38,5 @@ urlpatterns = [
     path('schedule/',scheduleviews.scheduleList.as_view()),
     path('schedule/<int:pk>',scheduleviews.scheduleDetail.as_view()),
     path('schedule/due',scheduleviews.scheduleQuery),
+    path('billofmaterial/<int:farmerId>', billofmaterialviews.bom),
 ]
