@@ -21,9 +21,9 @@ from farm import views as farmviews
 from fertilizer import views as fertilizerviews
 from schedule import views as scheduleviews
 from billofmaterial import views as billofmaterialviews
+from userprofile import views as userprofileviews
 from rest_framework_swagger.views import get_swagger_view
 from django.conf.urls import url
-from django.views.generic.base import RedirectView
 schema_view = get_swagger_view(title='Farmerapp API')
 
 urlpatterns = [
@@ -41,5 +41,7 @@ urlpatterns = [
     path('schedule/<int:pk>',scheduleviews.scheduleDetail.as_view()),
     path('schedule/due',scheduleviews.scheduleQuery),
     path('schedule/byfarm/<int:farmId>',scheduleviews.scheduleByFarm),
+    path('userprofile/', userprofileviews.userprofileList),
+    path('userprofile/<int:userId>/<slug:country>', userprofileviews.userprofileUpdate),
     path('billofmaterial/<int:farmerId>', billofmaterialviews.BillOfMaterial),
 ]
