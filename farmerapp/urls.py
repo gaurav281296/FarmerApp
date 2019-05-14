@@ -23,24 +23,23 @@ from schedule import views as scheduleviews
 from billofmaterial import views as billofmaterialviews
 from rest_framework_swagger.views import get_swagger_view
 from django.conf.urls import url
-
+from django.views.generic.base import RedirectView
 schema_view = get_swagger_view(title='Farmerapp API')
 
 urlpatterns = [
-    url('', admin.site.urls),
-    path('accounts/login/',admin.site.urls),
-    path('api/help',schema_view),
-    path('api/farmer/',farmerviews.farmerList.as_view()),
-    path('api/farmer/<int:pk>', farmerviews.farmerDetail.as_view()),
-    path('api/farmer/<slug:cropGrown>',farmerviews.farmerQuery),
-    path('api/farm/',farmviews.farmList.as_view()),
-    path('api/farm/<int:pk>', farmviews.farmDetail.as_view()),
-    path('api/farm/ownedby/<int:farmerId>', farmviews.farmQuery),
-    path('api/fertilizer/',fertilizerviews.fertilizerList.as_view()),
-    path('api/fertilizer/<int:pk>',fertilizerviews.fertilizerDetail.as_view()),
-    path('api/schedule/',scheduleviews.scheduleList.as_view()),
-    path('api/schedule/<int:pk>',scheduleviews.scheduleDetail.as_view()),
-    path('api/schedule/due',scheduleviews.scheduleQuery),
-    path('api/schedule/byfarm/<int:farmId>',scheduleviews.scheduleByFarm),
-    path('api/billofmaterial/<int:farmerId>', billofmaterialviews.BillOfMaterial),
+    path('', schema_view),
+    url('accounts/login/',admin.site.urls),
+    path('farmer/',farmerviews.farmerList.as_view()),
+    path('farmer/<int:pk>', farmerviews.farmerDetail.as_view()),
+    path('farmer/<slug:cropGrown>',farmerviews.farmerQuery),
+    path('farm/',farmviews.farmList.as_view()),
+    path('farm/<int:pk>', farmviews.farmDetail.as_view()),
+    path('farm/ownedby/<int:farmerId>', farmviews.farmQuery),
+    path('fertilizer/',fertilizerviews.fertilizerList.as_view()),
+    path('fertilizer/<int:pk>',fertilizerviews.fertilizerDetail.as_view()),
+    path('schedule/',scheduleviews.scheduleList.as_view()),
+    path('schedule/<int:pk>',scheduleviews.scheduleDetail.as_view()),
+    path('schedule/due',scheduleviews.scheduleQuery),
+    path('schedule/byfarm/<int:farmId>',scheduleviews.scheduleByFarm),
+    path('billofmaterial/<int:farmerId>', billofmaterialviews.BillOfMaterial),
 ]
