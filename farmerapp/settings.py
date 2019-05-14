@@ -83,7 +83,7 @@ TEMPLATES = [
 ]
 
 #LOGIN_URL = 'accounts/login/'
-LOGOUT_URL = 'accounts/login/logout/'
+LOGOUT_URL = 'accounts/logout/'
 
 WSGI_APPLICATION = 'farmerapp.wsgi.application'
 
