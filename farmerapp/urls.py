@@ -28,6 +28,7 @@ schema_view = get_swagger_view(title='Farmerapp API')
 
 urlpatterns = [
     url('', admin.site.urls),
+    path('accounts/login/',admin.site.urls),
     path('api/help',schema_view),
     path('api/farmer/',farmerviews.farmerList.as_view()),
     path('api/farmer/<int:pk>', farmerviews.farmerDetail.as_view()),
