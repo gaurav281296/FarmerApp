@@ -10,3 +10,4 @@ https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-u
 https://dev.to/callmetarush/the-django-rest-custom-user-model-and-authentication-5go9
 https://stackoverflow.com/questions/48173347/do-django-model-managers-require-using-self-db
 https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+https://docs.djangoproject.com/en/2.2/topics/db/multi-db/
