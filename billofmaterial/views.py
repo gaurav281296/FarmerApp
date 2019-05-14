@@ -16,7 +16,7 @@ import json
 class bom_entry():
     def __init__(self, schedule_id, fertilizer_name, cost_per_g_or_ml, quantity_in_g_or_ml, schedule_cost):
         self.schedule_id = schedule_id
-        self.fertilizer_name = fertilizer_name
+        self.fertilizer = fertilizer_name
         self.cost_per_g_or_ml = cost_per_g_or_ml
         self.quantity_in_g_or_ml = quantity_in_g_or_ml
         self.schedule_cost = schedule_cost
@@ -32,7 +32,7 @@ class billofmaterial():
 
 #enter validation checks and 404 errors
 @api_view(['GET'])
-def bom(request, farmerId, format=None):
+def BillOfMaterial(request, farmerId, format=None):
     total_cost = 0.0
     farmer = farmermodel.objects.get(pk=farmerId)
     farms_owned = farmerReadSerializer(farmer).data['Farms'] #get pk's of farms owned

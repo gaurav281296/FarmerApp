@@ -40,5 +40,5 @@ urlpatterns = [
     path('schedule/<int:pk>',scheduleviews.scheduleDetail.as_view()),
     path('schedule/due',scheduleviews.scheduleQuery),
     path('schedule/byfarm/<int:farmId>',scheduleviews.scheduleByFarm),
-    path('billofmaterial/<int:farmerId>', billofmaterialviews.bom),
+    path('billofmaterial/<int:farmerId>', billofmaterialviews.BillOfMaterial),
 ]
