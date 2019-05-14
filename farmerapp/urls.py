@@ -22,11 +22,13 @@ from fertilizer import views as fertilizerviews
 from schedule import views as scheduleviews
 from billofmaterial import views as billofmaterialviews
 from rest_framework_swagger.views import get_swagger_view
+from django.conf.urls import url
 
 schema_view = get_swagger_view(title='Farmerapp API')
 
 urlpatterns = [
-    path('',schema_view),
+    url('', admin.site.urls),
+    path('api/',schema_view),
     path(r'admin/', admin.site.urls),
     path('farmer/',farmerviews.farmerList.as_view()),
     path('farmer/<int:pk>', farmerviews.farmerDetail.as_view()),
