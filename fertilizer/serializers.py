@@ -14,3 +14,7 @@ class fertilizerSerializer(serializers.ModelSerializer):
         instance.PricePerSIunit = validated_data.get('PricePerSIunit', instance.PricePerSIunit)
         instance.save()
         return instance
+    
+    def getFertilizerById(id):
+        fertilizer = fertilizermodel.objects.get(pk=id)
+        return fertilizerSerializer(fertilizer)

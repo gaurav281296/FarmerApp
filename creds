@@ -1,3 +1,13 @@
 Gaurav
 gaurav.agarwal@shorelineiot.com
 shorelineiot
+
+
+-- country
+-- check alias present, if so use that: https://stackoverflow.com/questions/23894138/django-dynamic-multiple-databases
+-- if not, create alias: https://stackoverflow.com/questions/23894138/django-dynamic-multiple-databases
+-- migrate with it: via shell script?
+
+
+Gary
+shorelineiot

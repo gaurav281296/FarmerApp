@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from . models import farmer as farmermodel
 
-class farmerWriteSerializer(serializers.ModelSerializer):
+class farmerSerializer(serializers.ModelSerializer):
     class Meta:
         model = farmermodel
         fields = '__all__'
@@ -16,8 +16,16 @@ class farmerWriteSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+    def getFarmersByIds(ids):
+        farmers = farmermodel.objects.filter(id__in=ids)
+        return farmerSerializer(farmers,many=True)
+
 class farmerReadSerializer(serializers.ModelSerializer):
     Farms = serializers.StringRelatedField(many=True)
     class Meta:
         model = farmermodel
         fields = '__all__'
+    
+    def getFarmerById(farmerId):
+        farmer = farmermodel.objects.get(pk=farmerId)
+        return farmerReadSerializer(farmer)
