@@ -5,3 +5,7 @@ class userprofileSerializer(serializers.ModelSerializer):
     class Meta:
         model = userprofilemodel
         fields = '__all__'
+    
+    def getProfileByUserId(userId):
+        user = userprofilemodel.objects.get(user=userId)
+        return userprofileSerializer(user)

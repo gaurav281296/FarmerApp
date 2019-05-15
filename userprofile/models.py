@@ -8,7 +8,7 @@ class userprofile(models.Model):
     country = models.CharField(max_length=30)
 
     def __str__(self):
-        return '{0}'.format(self.user.first_name)
+        return '{0}'.format(self.user.username)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

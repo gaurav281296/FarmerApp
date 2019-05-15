@@ -8,23 +8,19 @@ from farm.serializers import farmSerializer
 from rest_framework import mixins
 from rest_framework import generics
 from rest_framework.decorators import api_view
-from rest_framework.views import APIView
-from django.http import Http404
+from rest_framework import status
 from rest_framework.response import Response
 
-class farmerList(APIView):
+class farmerList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = farmermodel.objects.filter(pk=0)    #we don't make use of queryset because user can switch at anytime. save memory by asking for only a single object
+    serializer_class = farmerSerializer
     def get(self, request, *args, **kwargs):
-        user_country = userprofileSerializer.getProfileByUserId(self.request.user.id).data['country']
-        famers = farmerSerializer.getAll(user_country)
+        farmers = farmerSerializer.getAll(request.user.id)
         return Response(farmers.data)
-    
+
     def post(self, request, *args, **kwargs):
-        user_country = userprofileSerializer.getProfileByUserId(self.request.user.id).data['country']
-        farmer = farmerSerializer(data=request.data)
-        if farmer.is_valid():
-            farmer.save(using=user_country)
-            return Response(farmer.data, status=status.HTTP_201_CREATED)
-        return Response(farmer.errors, status=status.HTTP_400_BAD_REQUEST)
+        farmer = farmerSerializer.createFarmer(request.user.id,request.data)
+        return Response(farmer.data)
 
 
 class farmerDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
@@ -32,13 +28,20 @@ class farmerDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.De
     serializer_class = farmerSerializer
 
     def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+        farmer_id = kwargs['pk']
+        farmer = farmerSerializer.getById(request.user.id, farmer_id)
+        return Response(farmer.data)
 
     def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+        farmer_id = kwargs['pk']
+        farmer = farmerSerializer.updateFarmer(request.user.id,farmer_id,request.data)
+        return Response(farmer.data)
 
     def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
+        farmer_id = kwargs['pk']
+        farmer = farmerSerializer.deleteById(request.user.id,farmer_id)
+        return Response(farmer)
+        #return self.destroy(request, *args, **kwargs)
 
 @api_view(['GET'])
 def farmerQuery(request, cropGrown, format=None):
