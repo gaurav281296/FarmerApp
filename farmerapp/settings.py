@@ -95,19 +95,19 @@ WSGI_APPLICATION = 'farmerapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.users'),
     },
     'usa': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'usa'),
+        'NAME': os.path.join(BASE_DIR, 'db.usa'),
     },
     'china':{
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'china'),
+        'NAME': os.path.join(BASE_DIR, 'db.china'),
     },
     'india':{
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'india'),
+        'NAME': os.path.join(BASE_DIR, 'db.india'),
     }
 }
 
