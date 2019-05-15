@@ -99,15 +99,15 @@ DATABASES = {
     },
     'usa': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.usa'),
+        'NAME': os.path.join(BASE_DIR, 'usa'),
     },
     'china':{
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.china'),
+        'NAME': os.path.join(BASE_DIR, 'china'),
     },
     'india':{
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.india'),
+        'NAME': os.path.join(BASE_DIR, 'india'),
     }
 }
 
