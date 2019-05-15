@@ -30,10 +30,11 @@ class billofmaterial():
 @api_view(['GET'])
 def BillOfMaterial(request, farmerId, format=None):
     total_cost = 0.0
+    userId = request.user.id
     #get farm_ids owned by a farmer using his farmerId
-    farms_owned = farmerReadSerializer.getFarmerById(farmerId).data['Farms']
+    farms_owned = farmerReadSerializer.getById(userId,farmerId).data['Farms']
     #get farms by ids
-    farms = farmScheduleSerializer.getFarmsByIds(farms_owned).data
+    farms = farmScheduleSerializer.getByIds(userId,farms_owned).data
     schedules = []
     boms = []
     #get all schedule ids of the farms owned by the farmer

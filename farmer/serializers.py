@@ -49,8 +49,9 @@ class farmerSerializer(serializers.ModelSerializer):
         farmer.delete()
         return status.HTTP_204_NO_CONTENT
 
-    def getFarmersByIds(ids):
-        farmers = farmermodel.objects.filter(id__in=ids)
+    def getByIds(userId,ids):
+        user_country = get_country(userId)
+        farmers = farmermodel.objects.using(user_country).filter(id__in=ids)
         return farmerSerializer(farmers,many=True)
 
 class farmerReadSerializer(serializers.ModelSerializer):
@@ -59,6 +60,7 @@ class farmerReadSerializer(serializers.ModelSerializer):
         model = farmermodel
         fields = '__all__'
     
-    def getFarmerById(farmerId):
-        farmer = farmermodel.objects.get(pk=farmerId)
+    def getById(userId,farmerId):
+        user_country = get_country(userId)
+        farmer = get_farmer(user_country,farmerId)
         return farmerReadSerializer(farmer)
