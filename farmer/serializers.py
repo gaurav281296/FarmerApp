@@ -15,6 +15,10 @@ class farmerSerializer(serializers.ModelSerializer):
         instance.Language = validated_data.get('Language', instance.Language)
         instance.save()
         return instance
+    
+    def getAll(user_country):
+        farmers = farmermodel.objects.using(user_country).all()
+        return farmerSerializer(farmers,many=True)
 
     def getFarmersByIds(ids):
         farmers = farmermodel.objects.filter(id__in=ids)

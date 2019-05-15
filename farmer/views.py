@@ -8,16 +8,23 @@ from farm.serializers import farmSerializer
 from rest_framework import mixins
 from rest_framework import generics
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+from django.http import Http404
 from rest_framework.response import Response
 
-class farmerList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
-    queryset = farmermodel.objects.all()
-    serializer_class = farmerSerializer
+class farmerList(APIView):
     def get(self, request, *args, **kwargs):
-        return self.list(request)
+        user_country = userprofileSerializer.getProfileByUserId(self.request.user.id).data['country']
+        famers = farmerSerializer.getAll(user_country)
+        return Response(farmers.data)
     
     def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+        user_country = userprofileSerializer.getProfileByUserId(self.request.user.id).data['country']
+        farmer = farmerSerializer(data=request.data)
+        if farmer.is_valid():
+            farmer.save(using=user_country)
+            return Response(farmer.data, status=status.HTTP_201_CREATED)
+        return Response(farmer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class farmerDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
