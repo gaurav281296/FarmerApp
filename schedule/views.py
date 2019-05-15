@@ -46,6 +46,7 @@ def scheduleByFarm(request, farmId, format=None):
 
 @api_view(['GET'])
 def scheduleQuery(request, format=None):
+    #print(request.user.id)
     schedules_due=[]
     allFarms = farmScheduleSerializer.getAllFarms().data
     
