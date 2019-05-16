@@ -1,5 +1,3 @@
-linux packages installed so far:
-
 Dependency: Docker
 
 Setup:
