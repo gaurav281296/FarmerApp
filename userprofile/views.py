@@ -8,15 +8,9 @@ from rest_framework.response import Response
 import json
 #using=self._db
 
-@api_view(['GET'])
-def userprofileList(request):
-    user = User.objects.all()
-    userprofile = userprofilemodel.objects.all()#proxy query
-    userprofile = userprofileSerializer(userprofile, many=True)
-    return Response(userprofile.data)
-
 @api_view(['PUT'])
-def userprofileUpdate(request, userId, country, format=None):
+def userprofileUpdate(request, country, format=None):
+    userId = request.user.id
     user = User.objects.get(pk=userId)
     user.userprofile.country = country
     user.save()

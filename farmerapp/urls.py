@@ -41,7 +41,6 @@ urlpatterns = [
     path('schedule/<int:pk>',scheduleviews.scheduleDetail.as_view()),
     path('schedule/due',scheduleviews.scheduleQuery),
     path('schedule/byfarm/<int:farmId>',scheduleviews.scheduleByFarm),
-    path('userprofile/', userprofileviews.userprofileList),
-    path('userprofile/<int:userId>/<slug:country>', userprofileviews.userprofileUpdate),
+    path('userprofile/<slug:country>', userprofileviews.userprofileUpdate),
     path('billofmaterial/<int:farmerId>', billofmaterialviews.BillOfMaterial),
 ]
