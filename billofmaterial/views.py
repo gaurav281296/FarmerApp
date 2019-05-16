@@ -49,7 +49,7 @@ def BillOfMaterial(request, farmerId, format=None):
         schedule_id = schedule['id']
         unit = schedule['Unit']
         quantity = float(schedule['Quantity'])
-        fertilizer = fertilizerSerializer.getFertilizerById(schedule['Fertilizer']).data
+        fertilizer = fertilizerSerializer.getById(userId,schedule['Fertilizer']).data
         fertilizer_name = fertilizer['Name']
         si_unit_cost = float(fertilizer['PricePerSIunit'])
 
