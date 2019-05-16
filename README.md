@@ -18,3 +18,6 @@ Setup:
 
 4. Start the server:
     sudo bash startserver.sh
+
+
+The Documentation has been added to the docs directory.

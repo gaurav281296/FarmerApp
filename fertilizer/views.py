@@ -5,6 +5,7 @@ from . serializers import fertilizerSerializer
 from rest_framework import mixins
 from rest_framework import generics
 
+#mixins handle exceptions automatically
 class fertilizerList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = fertilizermodel.objects.all()
     serializer_class = fertilizerSerializer
@@ -15,6 +16,7 @@ class fertilizerList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Ge
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
+#mixins handle exceptions automatically
 class fertilizerDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = fertilizermodel.objects.all() #objects.get(pk=id)
     serializer_class = fertilizerSerializer

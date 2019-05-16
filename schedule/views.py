@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from datetime import date,timedelta
 
 tomorrow = date.today() + timedelta(days=1)
-
+#mixins handle exceptions automatically
 class scheduleList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = schedulemodel.objects.all()
     serializer_class = scheduleSerializer
@@ -23,7 +23,7 @@ class scheduleList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gene
             return Response("Unit should be either kg, g, l or ml only")
         return self.create(request, *args, **kwargs)
 
-
+#mixins handle exceptions automatically
 class scheduleDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = schedulemodel.objects.all() #objects.get(pk=id)
     serializer_class = scheduleSerializer

@@ -10,6 +10,7 @@ from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+#mixins handle exceptions automatically
 class farmerList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = farmermodel.objects.all()
     serializer_class = farmerSerializer
@@ -19,7 +20,7 @@ class farmerList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generi
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
-
+#mixins handle exceptions automatically
 class farmerDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = farmermodel.objects.all() #objects.get(pk=id)
     serializer_class = farmerSerializer
