@@ -10,7 +10,7 @@ Setup:
 
 3. Once docker has been installed, you will have to login to the docker-cli. You can use my credentials for the same.
     
-    docker login
+    sudo docker login
 
     username: gaurav28
 
